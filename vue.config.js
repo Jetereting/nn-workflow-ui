@@ -7,7 +7,7 @@ module.exports = {
   lintOnSave: false,
   pages: {
     index: {
-      entry: 'src/main.js',
+      entry: 'src/index.js',
       template: 'public/index.html',
       filename: 'index.html'
     }
