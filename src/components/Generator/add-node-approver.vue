@@ -64,7 +64,12 @@
             v-for="(item, index) in properties1.actionerRules"
             :key="index"
           >
-          <img src="../../assets/icon/delect.png" class="delect" @click.stop="delectList()" alt="">
+            <img
+              src="../../assets/icon/delect.png"
+              class="delect"
+              @click.stop="delectList()"
+              alt=""
+            />
             角色名&nbsp;&nbsp;
             <div
               class="ant-select ant-select-enabled"
@@ -80,13 +85,14 @@
             </div>
             <div class="isDepartment">
               <p class="isDepartment_p">是否同一部门</p>
-              <input type="radio" value="1" v-model="item.needSameDept" /><label
-                class="isDepartment_input"
-                >是</label
-              >
               <input
                 type="radio"
-                value="0"
+                :value="1"
+                v-model="item.needSameDept"
+              /><label class="isDepartment_input">是</label>
+              <input
+                type="radio"
+                :value="0"
                 v-model="item.needSameDept"
                 class="isDepartment_input"
               /><label>否</label>
@@ -214,7 +220,7 @@ export default {
           isEmpty: false,
           autoUp: true,
           actType: "or",
-          needSameDept: 0,
+          needSameDept: Number(0),
         },
       ],
     },
@@ -311,7 +317,7 @@ export default {
             isEmpty: false,
             memberCount: 1,
             actType: "or",
-            needSameDept: 0,
+            needSameDept: Number(0),
           });
           break;
         default:
@@ -328,14 +334,13 @@ export default {
         isEmpty: false,
         memberCount: 1,
         actType: "or",
-        needSameDept: 0,
+        needSameDept: Number(0),
       });
-      this.properties1.actionerRules = [...new Set(this.properties1.actionerRules)]
       this.showAddRole = true;
     },
-    delectList(){
-      this.properties1.actionerRules.pop()
-    }
+    delectList() {
+      this.properties1.actionerRules.pop();
+    },
   },
 };
 </script>

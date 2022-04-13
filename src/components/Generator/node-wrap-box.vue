@@ -50,7 +50,7 @@
         ></i>
       </div>
       <div class="content" @click="isShowDialog()">
-        <template v-if="content=='所有人' ||content=='选择审批人'">
+        <template v-if="content == '所有人' || content == '选择审批人'">
           {{ content }}
         </template>
         <template v-else>
@@ -160,9 +160,13 @@ export default {
         let _that = this;
         _that.node.properties.actionerRules.forEach((e) => {
           if (!e.labelNames) return;
+          _that.newList = _that.newList.filter(
+            (item, index, arr) =>
+              arr.findIndex((t) => t.name === item.name) === index
+          );
           _that.newList.push({
             name: e.labelNames,
-            isDepart: e.needSameDept,
+            isDepart: Number(e.needSameDept),
           });
         });
         this.content = this.newList;
