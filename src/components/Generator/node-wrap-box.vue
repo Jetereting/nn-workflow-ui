@@ -57,8 +57,8 @@
           <div class="text" v-for="(item, index) in content" :key="index">
             <div class="">
               <p>
-                <span v-show="item.isDepart == 1">同部门下的</span
-                >{{ item.name }}
+                <span v-show="item.needSameDept == 1">同部门下的</span
+                >{{ item.labelNames }}
               </p>
             </div>
           </div>
@@ -134,6 +134,7 @@ export default {
       this.dialog = true;
     },
     setProperties(properties) {
+      this.content = properties.actionerRules;
       this.node.properties = properties;
       this.setText();
     },
@@ -157,19 +158,19 @@ export default {
         default:
       }
       if (this.node.properties && this.node.properties.actionerRules) {
-        let _that = this;
-        _that.node.properties.actionerRules.forEach((e) => {
-          if (!e.labelNames) return;
-          _that.newList = _that.newList.filter(
-            (item, index, arr) =>
-              arr.findIndex((t) => t.name === item.name) === index
-          );
-          _that.newList.push({
-            name: e.labelNames,
-            isDepart: Number(e.needSameDept),
-          });
-        });
-        this.content = this.newList;
+        // let _that = this;
+        // _that.node.properties.actionerRules.forEach((e) => {
+        //   if (!e.labelNames) return;
+        //   _that.newList = _that.newList.filter(
+        //     (item, index, arr) =>
+        //       arr.findIndex((t) => t.name === item.name) === index
+        //   );
+        //   _that.newList.push({
+        //     name: e.labelNames,
+        //     isDepart: Number(e.needSameDept),
+        //   });
+        // });
+        // this.content = this.newList;
 
         // var acr = this.node.properties.actionerRules[0]
         // switch (acr.type) {

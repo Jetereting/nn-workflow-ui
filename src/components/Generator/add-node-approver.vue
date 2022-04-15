@@ -2,9 +2,9 @@
   <AModal :dialog.sync="dialog1" @close="cancel">
     <div class="panel-approver">
       <div class="common-group approver-type-wrapper">
-        <div class="group-title">
+        <!-- <div class="group-title">
           选择审批对象
-        </div>
+        </div> -->
         <div class="group-content">
           <!-- <div>
             <div
@@ -56,7 +56,7 @@
                   <path
                     d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
                   /></svg></i
-              ><span>添加角色</span>
+              ><span>添加审批角色</span>
             </button>
           </div>
           <div
@@ -84,7 +84,7 @@
               </div>
             </div>
             <div class="isDepartment">
-              <p class="isDepartment_p">是否同一部门</p>
+              <p class="isDepartment_p">需要相同部门</p>
               <input
                 type="radio"
                 :value="1"
@@ -175,9 +175,9 @@
           <span>取 消</span>
         </button>
       </div>
-      <div class="common-group none-actioner-wrapper">
+      <!-- <div class="common-group none-actioner-wrapper">
         {{ properties1 }}
-      </div>
+      </div> -->
     </div>
   </AModal>
 </template>
