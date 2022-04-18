@@ -237,7 +237,7 @@ export default {
     this.properties1 = this.properties;
     this.init();
     Object.assign(this.temp, this.properties1);
-    this.setApprover(this.approvers[0]);
+    // this.setApprover(this.approvers[0]);
     // this.properties1.actionerRules[0].type = "target_management"
     // this.$emit('setProperties', this.properties1)
   },
