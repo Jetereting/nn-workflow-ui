@@ -182,7 +182,7 @@
   </AModal>
 </template>
 <script>
-import AModal from "./../AModal/AModal";
+import AModal from './../AModal/AModal'
 export default {
   components: {
     AModal,
@@ -201,25 +201,25 @@ export default {
     middleList: [],
     dialog1: false,
     showAddRole: true,
-    currentApp: "target_management",
-    currentAction: "or",
+    currentApp: 'target_management',
+    currentAction: 'or',
     temp: {},
     approvers: [
       // { label: '主管', value: 'target_management', color: 'red' },
-      { label: "角色", value: "target_label", color: "green" },
+      { label: '角色', value: 'target_label', color: 'green' },
     ],
     actTypes: [
-      { label: "或签（一名审批人同意或拒绝即可）", value: "or", color: "red" },
-      { label: "会签（须所有审批人同意）", value: "and", color: "green" },
+      { label: '或签（一名审批人同意或拒绝即可）', value: 'or', color: 'red' },
+      { label: '会签（须所有审批人同意）', value: 'and', color: 'green' },
     ],
     properties1: {
       actionerRules: [
         {
-          type: "target_management",
+          type: 'target_management',
           level: 1,
           isEmpty: false,
           autoUp: true,
-          actType: "or",
+          actType: 'or',
           needSameDept: Number(0),
         },
       ],
@@ -227,16 +227,16 @@ export default {
   }),
   watch: {
     dialog(val) {
-      this.dialog1 = val;
+      this.dialog1 = val
     },
     dialog1(val) {
-      this.$emit("update:dialog", val);
+      this.$emit('update:dialog', val)
     },
   },
   mounted() {
-    this.properties1 = this.properties;
-    this.init();
-    Object.assign(this.temp, this.properties1);
+    this.properties1 = this.properties
+    this.init()
+    Object.assign(this.temp, this.properties1)
     // this.setApprover(this.approvers[0]);
     // this.properties1.actionerRules[0].type = "target_management"
     // this.$emit('setProperties', this.properties1)
@@ -248,30 +248,31 @@ export default {
         : {
             actionerRules: [
               {
-                type: "target_management",
+                type: 'target_management',
                 level: 1,
                 isEmpty: false,
                 autoUp: true,
-                actType: "or",
+                actType: 'or',
+                needSameDept: Number(0),
               },
             ],
-          };
+          }
       var rule =
-        this.properties1.actionerRules && this.properties1.actionerRules[0];
+        this.properties1.actionerRules && this.properties1.actionerRules[0]
       if (rule) {
-        this.currentApp = rule.type;
-        this.currentAction = rule.actType;
-        if (rule.labelNames) this.showAddRole = true;
+        this.currentApp = rule.type
+        this.currentAction = rule.actType
+        if (rule.labelNames) this.showAddRole = true
       }
     },
     save() {
       if (
         this.properties1.actionerRules.some((e) => {
-          return e.labelNames == false;
+          return e.labelNames == false
         })
       ) {
-        alert("角色不能为空");
-        return;
+        alert('角色不能为空')
+        return
       }
 
       // var rule = this.properties1.actionerRules[0];
@@ -283,64 +284,64 @@ export default {
       //     }
       //     break;
       // }
-      this.dialog1 = false;
-      Object.assign(this.temp, this.properties1);
-      this.$emit("setProperties", this.properties1);
+      this.dialog1 = false
+      Object.assign(this.temp, this.properties1)
+      this.$emit('setProperties', this.properties1)
     },
     cancel() {
-      this.dialog1 = false;
+      this.dialog1 = false
       // this.properties1 = {};
       // Object.assign(this.properties1, this.temp)
       // this.init()
       // this.$emit('setProperties', this.properties1)
     },
     setApprover(app) {
-      this.currentApp = app.value;
-      if (app.value === "target_label") {
+      this.currentApp = app.value
+      if (app.value === 'target_label') {
       } else {
-        this.showAddRole = false;
+        this.showAddRole = false
       }
-      this.properties1.actionerRules = [];
+      this.properties1.actionerRules = []
       switch (app.value) {
-        case "target_management":
+        case 'target_management':
           this.properties1.actionerRules.push({
-            type: "target_management",
+            type: 'target_management',
             level: 1,
             isEmpty: false,
             autoUp: true,
-          });
-          break;
-        case "target_label":
+          })
+          break
+        case 'target_label':
           this.properties1.actionerRules.push({
-            type: "target_label",
-            labelNames: "",
+            type: 'target_label',
+            labelNames: '',
             isEmpty: false,
             memberCount: 1,
-            actType: "or",
+            actType: 'or',
             needSameDept: Number(0),
-          });
-          break;
+          })
+          break
         default:
       }
     },
     setAction(act) {
-      this.currentAction = act.value;
-      this.properties1.actionerRules[0].actType = act.value;
+      this.currentAction = act.value
+      this.properties1.actionerRules[0].actType = act.value
     },
     addRole() {
       this.properties1.actionerRules.push({
-        type: "target_label",
-        labelNames: "",
+        type: 'target_label',
+        labelNames: '',
         isEmpty: false,
         memberCount: 1,
-        actType: "or",
+        actType: 'or',
         needSameDept: Number(0),
-      });
-      this.showAddRole = true;
+      })
+      this.showAddRole = true
     },
     delectList() {
-      this.properties1.actionerRules.pop();
+      this.properties1.actionerRules.pop()
     },
   },
-};
+}
 </script>
