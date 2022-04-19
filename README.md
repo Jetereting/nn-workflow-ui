@@ -1,3 +1,14 @@
+# 插件开发方式：
+1.如果有：Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: 报错 可以 修改 
+node_modules/@babel/helper-compilation-targets/package.json:48 修改为："exports": {".": "./lib/index.js"},
+
+2.开发时修改：
+vue.config.js:10 修改为：
+entry: 'src/main.js',
+发布前再改回为：
+entry: 'src/index.js',
+
+
 插件源码地址 https://github.com/Jianguoqd/ninuo-workflow.git
 
 workflow-ui 前端工作流 UI
