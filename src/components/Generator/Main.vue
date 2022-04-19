@@ -74,12 +74,12 @@
   </div>
 </template>
 <script>
-import AModal from './../AModal/AModal'
-import EndNode from './end-node'
-import ErrorsModal from './errors-modal'
-import { iteratorData, addNewNode, delNode, checkData } from './process'
+import AModal from "./../AModal/AModal";
+import EndNode from "./end-node";
+import ErrorsModal from "./errors-modal";
+import { iteratorData, addNewNode, delNode, checkData } from "./process";
 export default {
-  name: 'WorkflowUi',
+  name: "WorkflowUi",
   components: {
     EndNode,
     AModal,
@@ -97,74 +97,74 @@ export default {
     errors: [],
     viewModal: false,
     data1: {
-      title: '请假',
+      title: "请假",
       node: {
-        name: '发起人',
-        type: 'start',
-        nodeId: 'sid-startevent',
-        childNode: {},
+        name: "发起人",
+        type: "start",
+        nodeId: "sid-startevent",
+        // childNode: {},
       },
     },
   }),
   watch: {
     data: {
       handler(val) {
-        this.data1 = val
+        this.data1 = val;
       },
       deep: true,
     },
   },
   mounted() {
     if (this.data && this.data.node) {
-      this.data1 = this.data
+      this.data1 = this.data;
     }
-    console.log(this.data1)
+    console.log(this.data1);
     if (!this.data1.node) {
-      this.initialNode()
+      this.initialNode();
     }
-    this.iteratorData(this.data1.node)
+    this.iteratorData(this.data1.node);
   },
   methods: {
     initialNode() {
       this.data1.node = {
-        name: '发起人',
-        type: 'start',
-        nodeId: 'sid-startevent',
-      }
+        name: "发起人",
+        type: "start",
+        nodeId: "sid-startevent",
+      };
     },
     iteratorData(data) {
-      this.items = []
-      iteratorData(this.items, data)
+      this.items = [];
+      iteratorData(this.items, data);
     },
     addnode(node) {
-      addNewNode(node, this.data1.node, this.items)
+      addNewNode(node, this.data1.node, this.items);
     },
     delNode(node) {
-      delNode(node, this.data1.node, this.items)
+      delNode(node, this.data1.node, this.items);
     },
     save() {
-      var errors = checkData(this.data1.node)
+      var errors = checkData(this.data1.node);
       if (errors.length > 0) {
-        this.errorsModal = true
-        this.errors = errors
-        return
+        this.errorsModal = true;
+        this.errors = errors;
+        return;
       }
-      this.$emit('ok', this.data1)
+      this.$emit("ok", this.data1);
     },
     preview() {
-      var errors = checkData(this.data1.node)
+      var errors = checkData(this.data1.node);
       if (errors.length > 0) {
-        this.errorsModal = true
-        this.errors = errors
-        return
+        this.errorsModal = true;
+        this.errors = errors;
+        return;
       }
-      this.viewModal = true
+      this.viewModal = true;
     },
     goBack() {
-      window.history.back()
+      window.history.back();
     },
   },
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
