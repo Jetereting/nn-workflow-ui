@@ -2,54 +2,45 @@
   <div>
     <div class="fd-nav">
       <div class="fd-nav-left">
-        <div class="fd-nav-back">
-          <i
-            aria-label="icon: left"
-            class="anticon anticon-left"
-          ><svg
-            viewBox="64 64 896 896"
-            focusable="false"
-            class=""
-            data-icon="left"
-            width="1em"
-            height="1em"
-            fill="currentColor"
-            aria-hidden="true"
-          ><path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z" /></svg></i>
-        </div><div class="fd-nav-title">
+        <div class="fd-nav-back" @click="goBack()">
+          <i aria-label="icon: left" class="anticon anticon-left"
+            ><svg
+              viewBox="64 64 896 896"
+              focusable="false"
+              class=""
+              data-icon="left"
+              width="1em"
+              height="1em"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"
+              /></svg
+          ></i>
+        </div>
+        <div class="fd-nav-title">
           {{ data1.title }}
         </div>
       </div>
       <div class="fd-nav-center">
         <div class="fd-nav-container">
           <div class="fd-nav-item">
-            <span
-              class="order-num"
-            >1</span>流程设计
+            <span class="order-num">1</span>流程设计
           </div>
         </div>
       </div>
       <div class="fd-nav-right">
-        <button
-          type="button"
-          class="ant-btn button-preview"
-          @click="preview"
-        >
+        <button type="button" class="ant-btn button-preview" @click="preview">
           <span>预 览</span>
         </button>
-        <button
-          type="button"
-          class="ant-btn button-preview"
-          @click="save"
-        >
+        <button type="button" class="ant-btn button-preview" @click="save">
           <span>发 布</span>
         </button>
       </div>
     </div>
     <div class="fd-nav-content">
-      <div
-        class="dingflow-design"
-      >
+      <div class="dingflow-design">
         <!-- <div class="zoom">
           <div class="zoom-out" />
           <span>100%</span>
@@ -69,17 +60,13 @@
               @delNode="delNode(item)"
             />
             <EndNode />
-            <AModal
-              :dialog.sync="viewModal"
-            >
+            <AModal :dialog.sync="viewModal">
               <pre
                 style="font-family: Monaco,Menlo,Consolas,Bitstream Vera Sans Mono,monospace;font-size: 14px;"
-              >{{ JSON.stringify(data1.node, null, 4) }}</pre>
+                >{{ JSON.stringify(data1.node, null, 4) }}</pre
+              >
             </AModal>
-            <ErrorsModal
-              :dialog.sync="errorsModal"
-              :data="errors"
-            />
+            <ErrorsModal :dialog.sync="errorsModal" :data="errors" />
           </div>
         </div>
       </div>
@@ -96,13 +83,13 @@ export default {
   components: {
     EndNode,
     AModal,
-    ErrorsModal
+    ErrorsModal,
   },
   props: {
     data: {
       type: Object,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   data: () => ({
     items: [],
@@ -115,19 +102,19 @@ export default {
         name: '发起人',
         type: 'start',
         nodeId: 'sid-startevent',
-        childNode: {}
-      }
-    }
+        childNode: {},
+      },
+    },
   }),
   watch: {
     data: {
-      handler (val) {
+      handler(val) {
         this.data1 = val
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
-  mounted () {
+  mounted() {
     if (this.data && this.data.node) {
       this.data1 = this.data
     }
@@ -138,24 +125,24 @@ export default {
     this.iteratorData(this.data1.node)
   },
   methods: {
-    initialNode () {
+    initialNode() {
       this.data1.node = {
         name: '发起人',
         type: 'start',
-        nodeId: 'sid-startevent'
+        nodeId: 'sid-startevent',
       }
     },
-    iteratorData (data) {
+    iteratorData(data) {
       this.items = []
       iteratorData(this.items, data)
     },
-    addnode (node) {
+    addnode(node) {
       addNewNode(node, this.data1.node, this.items)
     },
-    delNode (node) {
+    delNode(node) {
       delNode(node, this.data1.node, this.items)
     },
-    save () {
+    save() {
       var errors = checkData(this.data1.node)
       if (errors.length > 0) {
         this.errorsModal = true
@@ -164,7 +151,7 @@ export default {
       }
       this.$emit('ok', this.data1)
     },
-    preview () {
+    preview() {
       var errors = checkData(this.data1.node)
       if (errors.length > 0) {
         this.errorsModal = true
@@ -172,11 +159,13 @@ export default {
         return
       }
       this.viewModal = true
-    }
-  }
+    },
+    goBack() {
+      window.history.back()
+    },
+  },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped></style>
