@@ -209,7 +209,7 @@ export default {
     middleList: [],
     dialog1: false,
     showAddRole: true,
-    currentApp: 'target_management',
+    currentApp: 'target_label',
     currentAction: 'or',
     temp: {},
     approvers: [
@@ -223,7 +223,7 @@ export default {
     properties1: {
       actionerRules: [
         {
-          type: 'target_management',
+          type: 'target_label',
           level: 1,
           isEmpty: false,
           autoUp: true,
@@ -256,7 +256,7 @@ export default {
         : {
           actionerRules: [
             {
-              type: 'target_management',
+              type: 'target_label',
               level: 1,
               isEmpty: false,
               autoUp: true,
