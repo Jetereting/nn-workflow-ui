@@ -69,6 +69,7 @@
                     <button
                       type="button"
                       class="ant-btn ant-btn-primary"
+                      style="margin-left: 10px"
                       @click="save"
                     >
                       <span>保 存</span>

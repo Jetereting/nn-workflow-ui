@@ -8,7 +8,7 @@
         <div class="condition-panel-range-set">
           <div
             class="ant-input-number"
-            style="width: 50%;"
+            style="width: 170px;margin-right: 11px;"
           >
             <div class="ant-input-number-input-wrap">
               <input
