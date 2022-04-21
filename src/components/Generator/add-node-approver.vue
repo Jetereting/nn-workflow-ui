@@ -1,5 +1,8 @@
 <template>
-  <AModal :dialog.sync="dialog1" @close="cancel">
+  <AModal
+    :dialog.sync="dialog1"
+    @close="cancel"
+  >
     <div class="panel-approver">
       <div class="common-group approver-type-wrapper">
         <!-- <div class="group-title">
@@ -40,36 +43,35 @@
                 aria-label="icon: plus"
                 class="anticon anticon-plus"
                 style="color: rgb(255, 255, 255);"
-                ><svg
-                  viewBox="64 64 896 896"
-                  focusable="false"
-                  class=""
-                  data-icon="plus"
-                  width="1em"
-                  height="1em"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
-                  />
-                  <path
-                    d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
-                  /></svg></i
-              ><span>添加审批角色</span>
+              ><svg
+                viewBox="64 64 896 896"
+                focusable="false"
+                class=""
+                data-icon="plus"
+                width="1em"
+                height="1em"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
+                />
+                <path
+                  d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
+                /></svg></i><span>添加审批角色</span>
             </button>
           </div>
           <div
-            class="ant-row-flex ant-row-flex-space-around ant-row-flex-middle condition-group newFormFont"
             v-for="(item, index) in properties1.actionerRules"
             :key="index"
+            class="ant-row-flex ant-row-flex-space-around ant-row-flex-middle condition-group newFormFont"
           >
             <img
               src="../../assets/icon/delect.png"
               class="delect"
-              @click.stop="delectList()"
               alt=""
-            />
+              @click.stop="delectList()"
+            >
             角色名&nbsp;&nbsp;
             <div
               class="ant-select ant-select-enabled"
@@ -80,22 +82,24 @@
                   v-model="item.labelNames"
                   class="ant-input-number-input role_input"
                   placeholder="输入角色名"
-                />
+                >
               </div>
             </div>
             <div class="isDepartment">
-              <p class="isDepartment_p">需要相同部门</p>
+              <p class="isDepartment_p">
+                需要相同部门
+              </p>
               <input
+                v-model="item.needSameDept"
                 type="radio"
                 :value="1"
-                v-model="item.needSameDept"
-              /><label class="isDepartment_input">是</label>
+              ><label class="isDepartment_input">是</label>
               <input
+                v-model="item.needSameDept"
                 type="radio"
                 :value="0"
-                v-model="item.needSameDept"
                 class="isDepartment_input"
-              /><label>否</label>
+              ><label>否</label>
             </div>
           </div>
           <!-- <div
@@ -171,7 +175,11 @@
         >
           <span>保 存</span>
         </button>
-        <button type="button" class="ant-btn ant-btn-default" @click="cancel">
+        <button
+          type="button"
+          class="ant-btn ant-btn-default"
+          @click="cancel"
+        >
           <span>取 消</span>
         </button>
       </div>
@@ -185,55 +193,55 @@
 import AModal from './../AModal/AModal'
 export default {
   components: {
-    AModal,
+    AModal
   },
   props: {
     dialog: {
       type: Boolean,
-      default: false,
+      default: false
     },
     properties: {
       type: Object,
-      default: undefined,
-    },
+      default: undefined
+    }
   },
   data: () => ({
     middleList: [],
     dialog1: false,
     showAddRole: true,
-    currentApp: 'target_management',
+    currentApp: 'target_label',
     currentAction: 'or',
     temp: {},
     approvers: [
       // { label: '主管', value: 'target_management', color: 'red' },
-      { label: '角色', value: 'target_label', color: 'green' },
+      { label: '角色', value: 'target_label', color: 'green' }
     ],
     actTypes: [
       { label: '或签（一名审批人同意或拒绝即可）', value: 'or', color: 'red' },
-      { label: '会签（须所有审批人同意）', value: 'and', color: 'green' },
+      { label: '会签（须所有审批人同意）', value: 'and', color: 'green' }
     ],
     properties1: {
       actionerRules: [
         {
-          type: 'target_management',
+          type: 'target_label',
           level: 1,
           isEmpty: false,
           autoUp: true,
           actType: 'or',
-          needSameDept: Number(0),
-        },
-      ],
-    },
+          needSameDept: Number(0)
+        }
+      ]
+    }
   }),
   watch: {
-    dialog(val) {
+    dialog (val) {
       this.dialog1 = val
     },
-    dialog1(val) {
+    dialog1 (val) {
       this.$emit('update:dialog', val)
-    },
+    }
   },
-  mounted() {
+  mounted () {
     this.properties1 = this.properties
     this.init()
     Object.assign(this.temp, this.properties1)
@@ -242,21 +250,21 @@ export default {
     // this.$emit('setProperties', this.properties1)
   },
   methods: {
-    init() {
+    init () {
       this.properties1 = this.properties1
         ? this.properties1
         : {
-            actionerRules: [
-              {
-                type: 'target_management',
-                level: 1,
-                isEmpty: false,
-                autoUp: true,
-                actType: 'or',
-                needSameDept: Number(0),
-              },
-            ],
-          }
+          actionerRules: [
+            {
+              type: 'target_label',
+              level: 1,
+              isEmpty: false,
+              autoUp: true,
+              actType: 'or',
+              needSameDept: Number(0)
+            }
+          ]
+        }
       var rule =
         this.properties1.actionerRules && this.properties1.actionerRules[0]
       if (rule) {
@@ -265,10 +273,10 @@ export default {
         if (rule.labelNames) this.showAddRole = true
       }
     },
-    save() {
+    save () {
       if (
         this.properties1.actionerRules.some((e) => {
-          return e.labelNames == false
+          return e.labelNames === false
         })
       ) {
         alert('角色不能为空')
@@ -288,14 +296,14 @@ export default {
       Object.assign(this.temp, this.properties1)
       this.$emit('setProperties', this.properties1)
     },
-    cancel() {
+    cancel () {
       this.dialog1 = false
       // this.properties1 = {};
       // Object.assign(this.properties1, this.temp)
       // this.init()
       // this.$emit('setProperties', this.properties1)
     },
-    setApprover(app) {
+    setApprover (app) {
       this.currentApp = app.value
       if (app.value === 'target_label') {
       } else {
@@ -308,7 +316,7 @@ export default {
             type: 'target_management',
             level: 1,
             isEmpty: false,
-            autoUp: true,
+            autoUp: true
           })
           break
         case 'target_label':
@@ -318,30 +326,30 @@ export default {
             isEmpty: false,
             memberCount: 1,
             actType: 'or',
-            needSameDept: Number(0),
+            needSameDept: Number(0)
           })
           break
         default:
       }
     },
-    setAction(act) {
+    setAction (act) {
       this.currentAction = act.value
       this.properties1.actionerRules[0].actType = act.value
     },
-    addRole() {
+    addRole () {
       this.properties1.actionerRules.push({
         type: 'target_label',
         labelNames: '',
         isEmpty: false,
         memberCount: 1,
         actType: 'or',
-        needSameDept: Number(0),
+        needSameDept: Number(0)
       })
       this.showAddRole = true
     },
-    delectList() {
+    delectList () {
       this.properties1.actionerRules.pop()
-    },
-  },
+    }
+  }
 }
 </script>
