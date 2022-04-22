@@ -1,10 +1,10 @@
 {
   "name": "nn-workflow-ui",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "private": false,
   "repository": {
-    "type": "官网测试",
-    "url": "https://nnzhineng.com"
+    "type": "git",
+    "url": "https://github.com/Jetereting/nn-workflow-ui"
   },
   "main": "lib/nn-workflow-ui.common.js",
   "files": [

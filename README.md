@@ -1,8 +1,8 @@
 # nn-workflow-ui 前端工作流
 ![前端工作流](https://github.com/Jetereting/nn-workflow-ui/blob/main/doc/img/workflow-ui.png)
 
-* 插件源码地址 https://codeup.aliyun.com/ninuo/smartDistrictOffice/nn-workflow-ui
-* 后端源码地址 https://codeup.aliyun.com/ninuo/smartDistrictOffice/go-workflow
+* 插件源码地址 https://github.com/Jetereting/nn-workflow-ui
+* 后端源码地址 https://github.com/Jetereting/go-workflow
 * 后端Docker地址 https://hub.docker.com/repository/docker/jetereting/go-workflow
 
 ## 使用方式
