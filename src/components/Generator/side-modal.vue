@@ -11,7 +11,7 @@
             <div
               class="ant-col ant-col-17 editable-text-col"
             >
-              <span class="text-value-wrapper"><span>条件1</span><i
+              <span class="text-value-wrapper"><span>条件2</span><i
                 aria-label="icon: edit"
                 tabindex="-1"
                 class="anticon anticon-edit"
@@ -113,7 +113,8 @@
             @click="cancel"
           >
             <span>取 消</span>
-          </button><button
+          </button>
+          <button
             type="button"
             class="ant-btn ant-btn-primary"
             @click="save"

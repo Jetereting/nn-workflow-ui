@@ -1,14 +1,14 @@
 <template>
   <div class="ant-row-flex ant-row-flex-space-around ant-row-flex-middle condition-group">
-    <div class="ant-col ant-col-4 group-title">
+    <div class="ant-col ant-col-3 group-title">
       <span>参数 {{ pos + 1 }}</span>
     </div>
-    <div class="ant-col ant-col-17">
+    <div class="ant-col ant-col-18">
       <div>
         <div class="condition-panel-range-set">
           <div
             class="ant-input-number"
-            style="width: 170px;margin-right: 11px;"
+            style="width: 150px;margin-right: 9px;"
           >
             <div class="ant-input-number-input-wrap">
               <input
@@ -20,7 +20,7 @@
           </div>
           <div
             class="ant-input-number"
-            style="width: 50%;"
+            style="width: 180px;"
           >
             <div class="ant-input-number-input-wrap">
               <input
@@ -36,14 +36,17 @@
             :name.sync="data1.key"
             :label.sync="data1.label"
             :items="items"
+            style="width: 160px;"
           />
           <ConditionInputNumber
             v-if="data1.key !== 'between'"
             :value.sync="inputVal"
+            style="width: 180px;"
           />
           <ConditionRangeBetween
             v-if="data1.key === 'between'"
             :data.sync="data1"
+            style="width: 150px;"
           />
         </div>
       </div>
@@ -102,7 +105,7 @@ export default {
         { key: 'eq', label: '等于', value: 'boundEqual' },
         { key: 'gt', label: '大于', value: 'lowerBound' },
         { key: 'ge', label: '大于等于', value: 'lowerBoundEqual' },
-        { key: 'between', label: '介于(两个数之间)', value: '' }
+        // { key: 'between', label: '介于(两个数之间)', value: '' }
       ]
     }
   },
